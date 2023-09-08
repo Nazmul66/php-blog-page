@@ -1,0 +1,12 @@
+.options{
+    padding: 0;
+    text-align: center;
+}
+.options li{ 
+    list-style: none;
+    display: inline-block;
+    margin: 0 6px;
+}
+.options li .fa-trash{
+    color: red;
+ }
