@@ -85,7 +85,7 @@
                                         <?php 
                                            if( !empty($image) ){
                                             ?>
-                                             <img src="./dist/img/users/<?php echo $image ?>" alt="" width="50">
+                                             <img src="dist/img/users/<?php echo $image ?>" alt="" width="50">
                                             <?php
                                            }
                                         ?>

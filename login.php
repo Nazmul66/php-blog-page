@@ -47,7 +47,7 @@
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="Email" name="email" class="" placeholder="Email">
+          <input type="Email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
