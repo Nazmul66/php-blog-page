@@ -46,9 +46,25 @@
 <script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- CK Editor Bootstrap version-4.23.0 -->
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
-</body>
+
+
+  <script>
+       ClassicEditor
+          .create( document.querySelector( '#descriptionContent' ) )
+          .then( editor => {
+                  console.log( editor );
+          } )
+          .catch( error => {
+                  console.error( error );
+          } );
+  </script>
+
+
+  </body>
 </html>
 
 <?php 

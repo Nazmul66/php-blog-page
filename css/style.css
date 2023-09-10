@@ -10,3 +10,19 @@
 .options li .fa-trash{
     color: red;
  }
+
+
+/* CK Editor CSS change */
+.ck .ck-editor__main {
+    height: 225px !important;
+}
+.ck .ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    height: 225px !important;
+}
+.ck .ck-editor__main>.ck-editor__editable:not(.ck-blurred) {
+    height: 225px !important;
+}
+
+.ck .ck-powered-by{
+    display: none;
+}

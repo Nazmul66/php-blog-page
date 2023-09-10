@@ -233,6 +233,9 @@
               </p>
             </a>
           </li>
+ 
+          <li class="nav-header">User Management</li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -256,6 +259,33 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-header">Portal Management</li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                All Category
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="category.php?do=add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="category.php?do=manage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage All Category</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item menu-open">
             <a href="logout.php" class="nav-link">
               <i class="nav-icon fas fa-exit"></i>

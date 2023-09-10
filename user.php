@@ -135,7 +135,7 @@
                  </div>
 
                <!-- Modal -->
-                      <div class="modal fade" id="Modal<?php echo $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="Modal<?php echo $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -235,39 +235,39 @@
 
               else if( $do == "store" ){
                  if( isset ( $_POST['addUser'] ) ){
-                    $name            = mysqli_real_escape_string($db, $_POST['name']);
-                    $email           = mysqli_real_escape_string($db, $_POST['email']);
-                    $Password        = mysqli_real_escape_string($db, $_POST['Password']);
-                    $rePassword      = mysqli_real_escape_string($db, $_POST['rePassword']);
-                    $phone           = mysqli_real_escape_string($db, $_POST['phone']);
-                    $address         = mysqli_real_escape_string($db, $_POST['address']);
-                    $role            = mysqli_real_escape_string($db, $_POST['role']);
-                    $status          = mysqli_real_escape_string($db, $_POST['status']);
-                    $image_name      = $_FILES['image']['name'];
-                    $image_tmp       = $_FILES['image']['tmp_name'];
+                        $name            = mysqli_real_escape_string($db, $_POST['name']);
+                        $email           = mysqli_real_escape_string($db, $_POST['email']);
+                        $Password        = mysqli_real_escape_string($db, $_POST['Password']);
+                        $rePassword      = mysqli_real_escape_string($db, $_POST['rePassword']);
+                        $phone           = mysqli_real_escape_string($db, $_POST['phone']);
+                        $address         = mysqli_real_escape_string($db, $_POST['address']);
+                        $role            = mysqli_real_escape_string($db, $_POST['role']);
+                        $status          = mysqli_real_escape_string($db, $_POST['status']);
+                        $image_name      = $_FILES['image']['name'];
+                        $image_tmp       = $_FILES['image']['tmp_name'];
                  }
 
                  if( $Password == $rePassword ){
                     $hashPassword = sha1($Password);
 
-                    if( !empty($image_name) ){
-                      $image = rand(1, 999999) . "-image-" . $image_name;
-                      move_uploaded_file($image_tmp, "dist/img/users/" . $image );
-                    }
-                    else{
-                      $image = "";
-                    }
+                      if( !empty($image_name) ){
+                        $image = rand(1, 999999) . "-image-" . $image_name;
+                        move_uploaded_file($image_tmp, "dist/img/users/" . $image );
+                      }
+                      else{
+                        $image = "";
+                      }
 
-                   $sql = "INSERT INTO userinfo (name, email, password, phone, address, role, status, Image) VALUES ('$name', '$email', '$hashPassword', '$phone', '$address', '$role', '$status', '$image')";
+                      $sqli = "INSERT INTO userinfo (name, email, password, phone, address, role, status, Image) VALUES ('$name', '$email', '$hashPassword', '$phone', '$address', '$role', '$status', '$image')";
 
-                   $query = mysqli_query($db, $sql);
+                       $queries = mysqli_query($db, $sqli);
 
-                   if($query){
-                      header("Location: user.php?do=manage");
-                   }
-                   else{
-                      die("data not store into database");
-                   }
+                        if($queries){
+                            header("Location: user.php?do=manage");
+                        }
+                        else{
+                            die("data not store into database");
+                        }
 
                  }
                  else{
