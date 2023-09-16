@@ -112,6 +112,33 @@
                                         </ul>
                                       </td>
                                     </tr>
+
+                                    <!-- Modal -->
+                              <div class="modal fade" id="exampleModal<?php echo $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <ul class="options">
+                                            <li>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </li>
+                                            <li>
+                                                <a href="category.php?do=delete&id=<?php echo $id ?>">
+                                                  <button class="btn btn-danger">Delete</button>
+                                                </a>
+                                            </li>
+                                          </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+
                               <?php
                               }
                            }
@@ -121,36 +148,24 @@
                   </div>
                  </div>
 
-                 <!-- Modal -->
-                    <div class="modal fade" id="exampleModal<?php echo $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                              <ul class="options">
-                                <li>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </li>
-                                <li>
-                                    <a href="category.php?do=delete&id=<?php echo $id ?>">
-                                      <button class="btn btn-danger">Delete</button>
-                                    </a>
-                                </li>
-                              </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                 <?php
               }
 
               else if($do == "add"){
                   ?>
+
+                    <?php 
+                          if( !empty($_SESSION['img_error']) ){
+                          ?>
+                            <div class="alert alert-danger">
+                                <?php echo $_SESSION['img_error']; ?>
+                            </div>
+                          <?php
+
+                             unset($_SESSION['img_error']);
+                          
+                          }
+                      ?>
            
                   <div class="container">
                     <form action="category.php?do=store" method="POST" enctype="multipart/form-data">
@@ -200,29 +215,57 @@
                         $description        = mysqli_real_escape_string($db, $_POST['description']);
                         $image_name         = $_FILES['image']['name'];
                         $image_tmp          = $_FILES['image']['tmp_name'];
+                        $image_size         = $_FILES['image']['size'];
+                        $image_type         = $_FILES['image']['type'];
+
+                        /// file type are problem here
+                        //  in_array($image_type,  $extensions, TRUE);
+                        //  $extensions= array("jpeg","jpg","png");
 
                         if( !empty($image_name) ){
-                            $image = rand(1, 999999) . "-image-" . $image_name;
-                            move_uploaded_file($image_tmp, "dist/img/users/" . $image );
+
+                            if ( $image_size < 2091000 ){
+                              $image = rand(1, 999999) . "-image-" . $image_name;
+                              move_uploaded_file($image_tmp, "dist/img/users/" . $image );
+
+                              $sql = "INSERT INTO category (cat_name, cat_desc, status, Image) VALUES ('$name', '$description', '$status', '$image')";
+
+                              $addCategories = mysqli_query($db, $sql);
+
+                                if($addCategories){
+                                    header("Location: category.php?do=manage");
+                                }
+                                else{
+                                    die("data not store into database");
+                                }
+
+                            }
+
+                            else{
+                                
+                              $_SESSION["img_error"] = "extension not allowed, please choose a JPEG or PNG or JPG file.";
+                              header("Location: category.php?do=add");
+                              
+                            }
+                             
                         }
                         else{
                            $image = "";
+
+                           $sql = "INSERT INTO category (cat_name, cat_desc, status) VALUES ('$name', '$description', '$status')";
+
+                           $addCategories = mysqli_query($db, $sql);
+
+                             if($addCategories){
+                                 header("Location: category.php?do=manage");
+                             }
+                             else{
+                                 die("data not store into database");
+                             }
                         }
-
-
-                      $sqli = "INSERT INTO category (cat_name, cat_desc, status, Image) VALUES ('$name', '$description', '$status', '$image')";
-
-                      $queries = mysqli_query($db, $sqli);
-
-                        if($queries){
-                            header("Location: category.php?do=manage");
-                        }
-                        else{
-                            die("data not store into database");
-                        }
-
                   }
               }
+
 
               else if($do == "edit"){
                 if( isset ( $_GET['id'] ) ){
