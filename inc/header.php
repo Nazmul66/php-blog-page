@@ -286,6 +286,30 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                All Posts
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="posts.php?do=add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Posts</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="posts.php?do=manage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage All Posts</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item menu-open">
             <a href="logout.php" class="nav-link">
               <i class="nav-icon fas fa-exit"></i>

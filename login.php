@@ -98,6 +98,7 @@
                     $_SESSION['name']            = $row['name'];
                     $_SESSION['email']           = $row['email'];
                     $password                    = $row['password'];
+                    $_SESSION['Image']           = $row['Image'];
                     $role                        = $row['role'];
                     $status                      = $row['status'];
 

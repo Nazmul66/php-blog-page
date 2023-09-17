@@ -42,7 +42,6 @@
                           <th scope="col">#Sl</th>
                           <th scope="col">Image</th>
                           <th scope="col">Category Name</th>
-                          <th scope="col">Category Description</th>
                           <th scope="col">Status</th>
                           <th scope="col">Option</th>
                         </tr>
@@ -90,7 +89,6 @@
                                         ?>
                                       </td>
                                       <td><?php echo $cat_name ?></td>
-                                      <td><?php echo $cat_desc ?></td>
                                       <td>
                                         <?php 
                                           if( $status == 1 ){
